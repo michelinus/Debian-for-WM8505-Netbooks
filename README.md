@@ -7,8 +7,8 @@ This distro has been tested with:
 - Some generic netbook with ID 89103C
 - Eken M-001 / M-003 Tablets
 
-## Credits
-Much of this work has been inspired by [wh0's bookconfig](https://github.com/wh0/bookconfig) project. The *kernel.tar.xz* file included is a direct clone of their kernel repository, simply included for ease of use. They were able to bring the custom device drivers needed in the kernel to a more modern Linux 4.5. Many of the scripts (including networking and udev) found in the *etc* folder were borrowed from their repository as well. Key build steps were also taken from [jubinson's debian-rootfs](https://github.com/jubinson/debian-rootfs) in order to effectively use Multistrap in the build process. I would also like to thank those involved in the [linux-vtwm](https://github.com/linux-wmt/linux-vtwm) project for their work in developing Kernel support for these devices.
+## Pre-compiled builds
+Builds are available under the releases page, download both the *boot.zip* and *rootfs.tar.gz* files for the build you would like and skip to the "Using the build" section.
 
 ## Build disclosures
 * Debian is pre-configured during the build process, it will boot directly in a ready-to-use system.
@@ -17,16 +17,16 @@ Much of this work has been inspired by [wh0's bookconfig](https://github.com/wh0
 * A 512 MB swap file is generated and enabled on first boot. I suggest keeping this given these systems have only 128 MB of RAM.
 * WPA Supplicant and OpenSSH Server are also included beyond the standard utilities.
 * *Predictable Network Interface Names* have been disabled in Systemd for the sake of Wi-Fi configuration.
-* The *resolv.conf* configuration file is set to use Google DNS.
+* The *resolv.conf* configuration file is set to use CloudFlare DNS.
 * The *eth0* interface is set to allow-hotplug and to use DHCP. Interface *wlan0* is set to manual, *wpa-cli* may be used to configure Wi-Fi.
 
-## Pre-compiled builds
-Builds are available under the releases page, download both the *boot.zip* and *rootfs.tar.gz* files for the build you would like and skip to the "Using the build" section.
-
 ## Build procedure
-I recommend building this on a Debian system closely matching the version you are building. I personally used Debian 9.8 with XFCE in a virtual machine. Clone this repository to your machine and ensure the necessary packages are installed. Set *build.sh* to executable if it's not already, and run it! Once it has completed, you will have *boot.zip* and *rootfs.tar.gz* files in the parent directory.
+To build you must use Debian 9.8 (I used XFCE as desktop environment in a virtual machine). Clone this repository to your machine. Set *build.sh* to executable if it's not already, and run it! Once it has completed, you will have *boot.zip* and *rootfs.tar.gz* files in the parent directory.
 
 ### Required packages
+
+All the packages will be automatically installed by the *build.sh* file, however the list is provided down here:
+
 * aptitude
 * bc
 * binfmt-support
@@ -40,10 +40,11 @@ I recommend building this on a Debian system closely matching the version you ar
 * u-boot-tools
 * zip
 
-All the packages are automatically installed by the *build.sh* file
-
 ## Using the build
 In order to get a build running, you will need an 8 GB SD card (recommended, it can be smaller) and a Linux machine with GParted. On the card, first create a 16 MB FAT16 partition, followed by an EXT4 partition that fills the rest of the card. You will then want to extract the *boot.zip* file to the FAT16 partition, and *rootfs.tar.gz* file to the EXT4 partition. Once that is completed, insert the card into your netbook and boot into your new Debian system!
+
+### Partition example
+![GParted partition example screenshot](http://i.imgur.com/ar47xMb.png)
 
 ### Extraction example
 ```
@@ -57,5 +58,9 @@ umount boot/ rootfs/
 eject /dev/sd*
 ```
 
-### Partition example
-![GParted partition example screenshot](http://i.imgur.com/ar47xMb.png)
+## Credits
+Much of this work has been inspired by [wh0's bookconfig](https://github.com/wh0/bookconfig) project. The *kernel.tar.xz* file included is a direct clone of their kernel repository, simply included for ease of use. They were able to bring the custom device drivers needed in the kernel to a more modern Linux 4.5. Many of the scripts (including networking and udev) found in the *etc* folder were borrowed from their repository as well. Key build steps were also taken from [jubinson's debian-rootfs](https://github.com/jubinson/debian-rootfs) in order to effectively use Multistrap in the build process. I would also like to thank those involved in the [linux-vtwm](https://github.com/linux-wmt/linux-vtwm) project for their work in developing Kernel support for these devices.
+
+### Fork credits
+
+Basially all the work is made by [lrussell887](https://github.com/lrussell887/Debian-for-WM8505-Netbooks), thanks for your amazing work man.
