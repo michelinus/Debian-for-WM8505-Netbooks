@@ -1,6 +1,9 @@
 # !/bin/bash
 set -x
 
+# Install required software
+sudo apt install -y aptitude bc binfmt-support build-essential debian-archive-keyring gcc-arm-linux-gnueabi libncurses5-dev libssl-dev multistrap qemu-user-static u-boot-tools zip
+
 # Extract a copy of the kernel
 tar xf kernel.tar.xz
 
