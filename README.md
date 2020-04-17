@@ -1,5 +1,11 @@
 # Debian for Wondermedia 8505 Netbooks
-This repository is a further amalgamation of work done by many others to bring Debian to WM8505-powered netbooks. In my case, the Sylvania SYNET07526. While they have gotten close, no other projects have offered a fully-functioning build for the device. This project aims to change that, creating a kernel build complete with modules and a Debian system complete with all standard utilities.
+This repository is a further amalgamation of work done by many others to bring Debian to WM8505-powered netbooks. While they have gotten close, no other projects have offered a fully-functioning build for the device. This project aims to change that, creating a kernel build complete with modules and a Debian system complete with all standard utilities
+
+## Devices it works with
+This distro has been tested with:
+- Sylvania SYNET07526
+- Some generic netbook with ID 89103C
+- Eken M-001 / M-003 Tablets
 
 ## Credits
 Much of this work has been inspired by [wh0's bookconfig](https://github.com/wh0/bookconfig) project. The *kernel.tar.xz* file included is a direct clone of their kernel repository, simply included for ease of use. They were able to bring the custom device drivers needed in the kernel to a more modern Linux 4.5. Many of the scripts (including networking and udev) found in the *etc* folder were borrowed from their repository as well. Key build steps were also taken from [jubinson's debian-rootfs](https://github.com/jubinson/debian-rootfs) in order to effectively use Multistrap in the build process. I would also like to thank those involved in the [linux-vtwm](https://github.com/linux-wmt/linux-vtwm) project for their work in developing Kernel support for these devices.
@@ -33,6 +39,8 @@ I recommend building this on a Debian system closely matching the version you ar
 * qemu-user-static
 * u-boot-tools
 * zip
+
+All the packages are automatically installed by the *build.sh* file
 
 ## Using the build
 In order to get a build running, you will need an 8 GB SD card (recommended, it can be smaller) and a Linux machine with GParted. On the card, first create a 16 MB FAT16 partition, followed by an EXT4 partition that fills the rest of the card. You will then want to extract the *boot.zip* file to the FAT16 partition, and *rootfs.tar.gz* file to the EXT4 partition. Once that is completed, insert the card into your netbook and boot into your new Debian system!
